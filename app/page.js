@@ -74,19 +74,6 @@ export default function HomePage() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
-              <div className="absolute -bottom-6 -left-6 hidden md:block">
-                <div className="glass rounded-2xl p-6 shadow-2xl shadow-night/20 max-w-[260px]">
-                  <p className="font-display text-3xl text-night leading-tight">
-                    300€
-                  </p>
-                  <p className="text-xs uppercase tracking-[0.2em] text-ocre mt-1">
-                    Acompte / personne
-                  </p>
-                  <p className="text-sm text-night/70 mt-3">
-                    Solde réglé sur place à Alger ou Djanet.
-                  </p>
-                </div>
-              </div>
             </div>
           </Reveal>
         </div>
@@ -197,12 +184,11 @@ export default function HomePage() {
                 <div>
                   <p className="eyebrow text-ocre-light mb-4">Prêt à partir ?</p>
                   <h2 className="font-display text-4xl md:text-6xl text-balance leading-[1.05]">
-                    Réservez votre expédition avec un acompte de 300€.
+                    Réservez votre place dans le désert.
                   </h2>
                   <p className="mt-6 text-ivory/70 max-w-xl">
-                    Le solde se règle sur place, à votre arrivée à Alger ou à
-                    Djanet. Acompte non remboursable. Report possible selon
-                    disponibilité.
+                    Petits groupes, dates limitées. Notre équipe vous
+                    accompagne du premier message au retour.
                   </p>
                 </div>
                 <div className="flex lg:justify-end">

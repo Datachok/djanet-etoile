@@ -40,16 +40,16 @@ export default function CircuitsPage() {
         <div className="container-x">
           <div className="grid md:grid-cols-3 gap-10 max-w-4xl mx-auto text-center">
             <Reveal>
-              <p className="font-display text-5xl text-ocre">300€</p>
-              <p className="mt-2 text-night/70 text-sm">Acompte / personne</p>
-            </Reveal>
-            <Reveal delay={0.1}>
               <p className="font-display text-5xl text-ocre">4–10</p>
               <p className="mt-2 text-night/70 text-sm">Voyageurs par groupe</p>
             </Reveal>
-            <Reveal delay={0.2}>
+            <Reveal delay={0.1}>
               <p className="font-display text-5xl text-ocre">7–10</p>
               <p className="mt-2 text-night/70 text-sm">Jours d'immersion</p>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="font-display text-5xl text-ocre">100%</p>
+              <p className="mt-2 text-night/70 text-sm">Guides Touaregs francophones</p>
             </Reveal>
           </div>
 

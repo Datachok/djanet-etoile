@@ -73,7 +73,7 @@ export default function Hero() {
           </Link>
           <Link
             href="/heritage"
-            className="btn-ghost text-ivory/85 hover:bg-ivory/10 hover:text-ivory"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-ivory/40 text-ivory font-medium tracking-wide transition-all duration-300 hover:bg-ivory hover:text-night"
           >
             Notre héritage
           </Link>

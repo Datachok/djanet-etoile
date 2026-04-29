@@ -27,10 +27,10 @@ export default function CircuitCard({ circuit, index = 0 }) {
 
           <div className="absolute top-6 left-6 right-6 flex items-center justify-between text-ivory/90">
             <span className="text-xs tracking-[0.25em] uppercase">
-              Expédition · {circuit.difficulty}
+              Expédition
             </span>
             <span className="text-xs tracking-[0.25em] uppercase">
-              dès {circuit.priceFrom}€
+              {circuit.duration}
             </span>
           </div>
 

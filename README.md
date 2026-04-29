@@ -15,13 +15,22 @@ npm run dev
 Ouvrir [http://localhost:3000](http://localhost:3000).
 
 ## Configuration Supabase
-pwd : VdL5kWfsJV3kP_s
+
+> ⚠️ La ligne `pwd : VdL5kWfsJV3kP_s` au-dessus ressemble à un mot de passe collé par accident — pensez à le retirer du repo et à le révoquer s'il est sensible.
+
+Supabase a renommé ses clés en 2025. Voici la correspondance avec les variables d'environnement utilisées par le projet :
+
+| Variable env                         | Où la trouver dans Supabase                                                                        |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SUPABASE_URL`           | **Project Settings → Data API → Project URL**                                                      |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY`      | **Project Settings → API Keys → Publishable key** *(anciennement `anon` public)* — commence par `sb_publishable_…` ou `eyJhbGc…` |
+| `SUPABASE_SERVICE_ROLE_KEY`          | **Project Settings → API Keys → Secret keys** *(anciennement `service_role`)* — créer une clé "default" si vide. **Ne jamais exposer côté client.** |
+
+Étapes :
+
 1. Créer un projet sur [supabase.com](https://supabase.com).
-2. Dans **SQL Editor**, exécuter [`supabase/schema.sql`](supabase/schema.sql).
-3. Récupérer dans **Project Settings → API** :
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `SUPABASE_SERVICE_ROLE_KEY` (côté serveur uniquement — ne jamais exposer)
+2. Dans **SQL Editor**, coller et exécuter le contenu de [`supabase/schema.sql`](supabase/schema.sql).
+3. Copier les 3 valeurs ci-dessus dans `.env.local`.
 
 ## Configuration Stripe
 

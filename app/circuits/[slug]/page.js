@@ -99,14 +99,10 @@ export default function CircuitDetail({ params }) {
           <Reveal delay={0.15}>
             <aside className="sticky top-28 rounded-3xl bg-white border border-sand-200 p-8 shadow-xl shadow-night/5">
               <p className="text-xs uppercase tracking-[0.25em] text-ocre">
-                À partir de
+                Expédition
               </p>
-              <p className="font-display text-5xl mt-2">
-                {circuit.priceFrom}€
-                <span className="text-base text-night/55"> / pers.</span>
-              </p>
-              <p className="text-sm text-night/60 mt-2">
-                Acompte de 300€ par personne · Solde sur place
+              <p className="font-display text-3xl mt-2 leading-tight">
+                {circuit.title}
               </p>
 
               <div className="mt-6 grid grid-cols-2 gap-3 text-sm">
@@ -118,18 +114,25 @@ export default function CircuitDetail({ params }) {
                   <p className="text-night/60">Niveau</p>
                   <p className="font-medium">{circuit.difficulty}</p>
                 </div>
+                <div className="rounded-xl bg-sand-100 p-3">
+                  <p className="text-night/60">Groupe</p>
+                  <p className="font-medium">{circuit.group}</p>
+                </div>
+                <div className="rounded-xl bg-sand-100 p-3">
+                  <p className="text-night/60">Départs</p>
+                  <p className="font-medium">Toute l'année</p>
+                </div>
               </div>
 
               <Link
                 href={`/reservation?circuit=${circuit.slug}`}
                 className="btn-primary w-full mt-6"
               >
-                Réserver — 300€ / pers. <ArrowRight size={16} />
+                Réserver ma place <ArrowRight size={16} />
               </Link>
 
               <p className="mt-5 text-xs text-night/55 leading-relaxed">
-                Acompte non remboursable (annulation, vol, refus de visa).
-                Report possible selon disponibilité.
+                Devis personnalisé selon la saison et le nombre de voyageurs.
               </p>
             </aside>
           </Reveal>
@@ -233,14 +236,14 @@ export default function CircuitDetail({ params }) {
                 Embarquez pour {circuit.title}.
               </h2>
               <p className="mt-4 text-ivory/70 max-w-xl mx-auto">
-                Acompte de 300€ par personne. Solde réglé sur place à Alger ou
-                Djanet. Places limitées par groupe.
+                Petits groupes, places limitées. Notre équipe revient vers
+                vous sous 24h pour finaliser votre voyage.
               </p>
               <Link
                 href={`/reservation?circuit=${circuit.slug}`}
                 className="btn-primary mt-8 bg-ocre hover:bg-ocre-light"
               >
-                Réserver — 300€ / pers. <ArrowRight size={18} />
+                Réserver ma place <ArrowRight size={18} />
               </Link>
             </div>
           </Reveal>

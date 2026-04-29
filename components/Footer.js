@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Phone, MapPin, Instagram, Facebook } from "lucide-react";
+import { Mail, Phone, MapPin, Instagram } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -18,20 +18,14 @@ export default function Footer() {
           </p>
           <div className="mt-6 flex gap-3">
             <a
-              href="https://instagram.com"
+              href="https://instagram.com/djanet.etoile"
               target="_blank"
               rel="noreferrer"
-              className="p-3 rounded-full bg-ivory/10 hover:bg-ocre transition"
+              aria-label="Instagram @djanet.etoile"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-ivory/10 hover:bg-ocre transition text-sm"
             >
-              <Instagram size={18} />
-            </a>
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noreferrer"
-              className="p-3 rounded-full bg-ivory/10 hover:bg-ocre transition"
-            >
-              <Facebook size={18} />
+              <Instagram size={16} />
+              <span>@djanet.etoile</span>
             </a>
           </div>
         </div>
@@ -55,8 +49,8 @@ export default function Footer() {
           </h4>
           <ul className="space-y-3 text-ivory/75">
             <li className="flex items-start gap-2"><MapPin size={16} className="mt-1 shrink-0" /> Djanet, Tassili n'Ajjer, Algérie</li>
-            <li className="flex items-center gap-2"><Phone size={16} /> +213 700 000 000</li>
-            <li className="flex items-center gap-2"><Mail size={16} /> contact@djanet-etoile.com</li>
+            <li className="flex items-center gap-2"><Phone size={16} /> <a href="tel:+33781076743" className="hover:text-ocre-light">+33 7 81 07 67 43</a></li>
+            <li className="flex items-center gap-2"><Mail size={16} /> <a href="mailto:contact@djanet-etoile.com" className="hover:text-ocre-light break-all">contact@djanet-etoile.com</a></li>
           </ul>
         </div>
       </div>
@@ -64,7 +58,7 @@ export default function Footer() {
       <div className="border-t border-ivory/10">
         <div className="container-x px-6 md:px-10 lg:px-16 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-ivory/50">
           <p>© {new Date().getFullYear()} Djanet Étoile — Tous droits réservés.</p>
-          <p>Acompte non remboursable. Conditions générales sur demande.</p>
+          <p>Conditions générales disponibles sur demande.</p>
         </div>
       </div>
     </footer>
