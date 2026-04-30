@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import Carousel from "@/components/Carousel";
 import { ArrowRight } from "lucide-react";
 
 export const metadata = {
@@ -50,22 +51,22 @@ export default function AboutPage() {
       <section className="section pt-0">
         <div className="container-x">
           <Reveal>
-            <div className="relative aspect-[16/9] md:aspect-[2.5/1] rounded-3xl overflow-hidden">
-              <Image
-                src="/pics/team.jpg"
-                alt="L'équipe Djanet Étoile"
-                fill
-                sizes="100vw"
-                className="object-cover"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-night/60 to-transparent" />
-              <div className="absolute bottom-8 left-8 text-ivory">
-                <p className="font-display text-3xl md:text-4xl">
-                  L'équipe, en plein Tassili.
-                </p>
-              </div>
-            </div>
+            <Carousel
+              aspect="aspect-[16/10] md:aspect-[2.4/1]"
+              showCaption
+              slides={[
+                {
+                  src: "/pics/team-1.jpg",
+                  alt: "Mohamed et Ibrahim, guides Touaregs",
+                  caption: "L'équipe, en plein Tassili.",
+                },
+                {
+                  src: "/pics/team-2.jpg",
+                  alt: "Guide Touareg en 4x4 au coucher du soleil",
+                  caption: "Sur la piste, à l'heure dorée.",
+                },
+              ]}
+            />
           </Reveal>
         </div>
       </section>

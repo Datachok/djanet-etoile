@@ -15,7 +15,7 @@ export default function Hero() {
         className="absolute inset-0"
       >
         <Image
-          src="/pics/hero-1.jpg"
+          src="/pics/hero-3.jpg"
           alt="Désert du Sahara — Djanet"
           fill
           priority

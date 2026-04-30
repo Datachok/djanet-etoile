@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import DonationForm from "@/components/DonationForm";
+import Carousel from "@/components/Carousel";
 import { Droplet, GraduationCap, Tent, HeartHandshake } from "lucide-react";
 
 export const metadata = {
@@ -57,15 +57,19 @@ export default function HumanitairePage() {
           </Reveal>
 
           <Reveal delay={0.15}>
-            <div className="relative aspect-[5/4] rounded-3xl overflow-hidden">
-              <Image
-                src="/pics/humanitaire-1.jpg"
-                alt="Action humanitaire"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </div>
+            <Carousel
+              aspect="aspect-[5/4]"
+              slides={[
+                {
+                  src: "/pics/humanitaire-1.jpg",
+                  alt: "Rencontre avec un enfant Touareg",
+                },
+                {
+                  src: "/pics/humanitaire-2.jpg",
+                  alt: "Marché artisanal Touareg, échange avec les familles",
+                },
+              ]}
+            />
           </Reveal>
         </div>
       </section>

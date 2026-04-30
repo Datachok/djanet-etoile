@@ -3,6 +3,7 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import CircuitCard from "@/components/CircuitCard";
 import Reveal from "@/components/Reveal";
+import Carousel from "@/components/Carousel";
 import { CIRCUITS_LIST } from "@/lib/circuits";
 import { ArrowRight, Compass, Heart, Mountain, Stars } from "lucide-react";
 
@@ -68,7 +69,7 @@ export default function HomePage() {
           <Reveal delay={0.15}>
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden">
               <Image
-                src="/pics/hero-2.jpg"
+                src="/pics/hero-5.jpg"
                 alt="Voyage Sahara"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -174,8 +175,44 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Galerie carrousel */}
       <section className="section">
+        <div className="container-x">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+            <Reveal>
+              <p className="eyebrow mb-4">Galerie</p>
+              <h2 className="font-display text-4xl md:text-5xl max-w-xl text-balance">
+                Le Sahara, en images.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-night/65 max-w-md leading-relaxed">
+                Quelques instantanés rapportés par nos voyageurs et nos guides.
+                Chaque cliché, une journée d'expédition.
+              </p>
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.15}>
+            <Carousel
+              aspect="aspect-[16/10] md:aspect-[2.4/1]"
+              showCaption
+              slides={[
+                { src: "/pics/hero-3.jpg", alt: "Touareg dans le rétroviseur du 4x4", caption: "Sur la piste, le silence en mouvement." },
+                { src: "/pics/hero-4.jpg", alt: "Voyageurs dans les dunes", caption: "Au sommet d'un erg, les heures s'arrêtent." },
+                { src: "/pics/circuit-tadrart-2.jpg", alt: "Cathédrales de grès — Tadrart", caption: "Les cathédrales de grès, après 100 millions d'années." },
+                { src: "/pics/heritage-rocheuse.jpg", alt: "Vallée du Tassili", caption: "Vallée taillée par les anciens fleuves du Sahara vert." },
+                { src: "/pics/circuit-essandilene-3.jpg", alt: "Oasis d'Essandilène", caption: "Une oasis cachée — l'eau, c'est la vie." },
+                { src: "/pics/heritage-touareg.jpg", alt: "Coucher de soleil sur les ergs", caption: "Le silence du soir." },
+                { src: "/pics/team-2.jpg", alt: "Guide Touareg en fin de journée", caption: "Nos guides, l'âme du voyage." },
+              ]}
+            />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section pt-0">
         <div className="container-x">
           <Reveal>
             <div className="rounded-[2.5rem] bg-night-gradient p-10 md:p-16 text-ivory relative overflow-hidden">
