@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getStripe, DEPOSIT_PER_PERSON_EUR } from "@/lib/stripe";
 import { supabaseAdmin } from "@/lib/supabase";
 import { CIRCUITS } from "@/lib/circuits";
+import { getSiteUrl } from "@/lib/site-url";
 
 export const runtime = "nodejs";
 
@@ -27,7 +28,7 @@ export async function POST(req) {
     const nb = Math.min(10, Math.max(1, Number(people) || 1));
     const amountEur = DEPOSIT_PER_PERSON_EUR * nb;
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    const siteUrl = getSiteUrl(req);
 
     // Pre-create reservation as pending
     let reservationId = null;
@@ -51,10 +52,14 @@ export async function POST(req) {
         })
         .select("id")
         .single();
-      if (!error) reservationId = data.id;
+      if (error) {
+        console.error("[checkout] Supabase insert error:", error);
+      } else {
+        reservationId = data.id;
+      }
     } catch (e) {
-      // Supabase optional — don't block payment
-      console.warn("Supabase insert failed:", e.message);
+      // Supabase missing/misconfigured — don't block payment, but log loudly
+      console.error("[checkout] Supabase admin client failed:", e.message);
     }
 
     const session = await getStripe().checkout.sessions.create({

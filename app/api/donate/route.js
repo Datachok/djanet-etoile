@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
 import { supabaseAdmin } from "@/lib/supabase";
+import { getSiteUrl } from "@/lib/site-url";
 
 export const runtime = "nodejs";
 
@@ -13,7 +14,7 @@ export async function POST(req) {
       return NextResponse.json({ error: "Nom et email requis." }, { status: 400 });
     }
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    const siteUrl = getSiteUrl(req);
 
     let donationId = null;
     try {
@@ -29,9 +30,13 @@ export async function POST(req) {
         })
         .select("id")
         .single();
-      if (!error) donationId = data.id;
+      if (error) {
+        console.error("[donate] Supabase insert error:", error);
+      } else {
+        donationId = data.id;
+      }
     } catch (e) {
-      console.warn("Supabase insert (donation) failed:", e.message);
+      console.error("[donate] Supabase admin client failed:", e.message);
     }
 
     const session = await getStripe().checkout.sessions.create({

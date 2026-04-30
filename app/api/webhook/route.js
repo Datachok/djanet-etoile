@@ -79,7 +79,8 @@ export async function POST(req) {
         }
       }
     } catch (err) {
-      console.error("Supabase update failed:", err.message);
+      console.error("[webhook] Supabase update failed:", err.message, err);
+      return NextResponse.json({ error: "supabase_failed" }, { status: 500 });
     }
   }
 
