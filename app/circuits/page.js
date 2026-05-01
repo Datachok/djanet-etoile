@@ -27,7 +27,13 @@ export default function CircuitsPage() {
           </Reveal>
         </div>
       </section>
-
+      <section className="pb-24 section pt-0">
+        <div className="container-x grid md:grid-cols-2 gap-8">
+          {CIRCUITS_LIST.map((c, i) => (
+            <CircuitCard key={c.slug} circuit={c} index={i} />
+          ))}
+        </div>
+      </section>
       {/* Bloc téléchargement du programme PDF — bien visible avant les cartes */}
       <section className="pb-12 section pt-0">
         <div className="container-x">
@@ -63,13 +69,7 @@ export default function CircuitsPage() {
         </div>
       </section>
 
-      <section className="pb-24 section pt-0">
-        <div className="container-x grid md:grid-cols-2 gap-8">
-          {CIRCUITS_LIST.map((c, i) => (
-            <CircuitCard key={c.slug} circuit={c} index={i} />
-          ))}
-        </div>
-      </section>
+
 
       <section className="section bg-sand-100/60 dark:bg-white/[0.02]">
         <div className="container-x">
