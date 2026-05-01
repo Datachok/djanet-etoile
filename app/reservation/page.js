@@ -29,7 +29,7 @@ export default function ReservationPage() {
       <section className="pb-28 section pt-0">
         <div className="container-x">
           <Reveal>
-            <div className="rounded-3xl bg-white border border-sand-200 p-8 md:p-12 shadow-xl shadow-night/5">
+            <div className="rounded-3xl card-surface p-8 md:p-12 shadow-xl shadow-night/5">
               <Suspense fallback={<p className="text-night/60">Chargement…</p>}>
                 <BookingForm />
               </Suspense>

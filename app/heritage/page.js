@@ -59,7 +59,7 @@ export default function HeritagePage() {
       {SECTIONS.map((s, i) => (
         <section
           key={s.title}
-          className={`section ${i % 2 === 1 ? "bg-sand-100/60" : ""}`}
+          className={`section ${i % 2 === 1 ? "bg-sand-100/60 dark:bg-white/[0.02]" : ""}`}
         >
           <div
             className={`container-x grid lg:grid-cols-2 gap-14 items-center ${

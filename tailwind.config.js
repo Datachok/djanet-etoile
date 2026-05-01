@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     "./app/**/*.{js,jsx}",
     "./components/**/*.{js,jsx}",
@@ -49,10 +50,25 @@ module.exports = {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
         },
+        twinkle: {
+          "0%, 100%": { opacity: 0.25 },
+          "50%": { opacity: 1 },
+        },
+        drift: {
+          "0%": { transform: "translate3d(0,0,0)" },
+          "100%": { transform: "translate3d(-160px,-80px,0)" },
+        },
+        "draw-stroke": {
+          "0%": { strokeDashoffset: 1 },
+          "100%": { strokeDashoffset: 0 },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.8s ease-out forwards",
         shimmer: "shimmer 3s linear infinite",
+        twinkle: "twinkle 4s ease-in-out infinite",
+        "twinkle-slow": "twinkle 7s ease-in-out infinite",
+        drift: "drift 200s linear infinite",
       },
     },
   },

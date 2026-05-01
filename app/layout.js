@@ -1,6 +1,9 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import StarrySky from "@/components/StarrySky";
+import ThemeScript from "@/components/ThemeScript";
+import ThemeProvider from "@/components/ThemeProvider";
 
 export const metadata = {
   title: "Djanet Étoile — Expéditions Touaregs au Sahara Algérien",
@@ -27,11 +30,17 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="fr">
+    <html lang="fr" suppressHydrationWarning>
+      <head>
+        <ThemeScript />
+      </head>
       <body>
-        <Navbar />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+        <ThemeProvider>
+          <StarrySky />
+          <Navbar />
+          <main className="min-h-screen relative">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

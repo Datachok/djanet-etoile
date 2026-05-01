@@ -1,16 +1,22 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin, Instagram } from "lucide-react";
+import AgadezCross from "@/components/AgadezCross";
 
 export default function Footer() {
   return (
-    <footer className="bg-night text-ivory">
+    <footer className="bg-night text-ivory relative dark:bg-[#08060d]">
       <div className="container-x px-6 md:px-10 lg:px-16 py-20 grid md:grid-cols-4 gap-12">
         <div className="md:col-span-2">
-          <div className="flex items-center gap-2">
-            <span className="text-3xl font-display font-semibold">Djanet</span>
-            <span className="text-3xl font-display italic text-ocre-light">
-              Étoile
+          <div className="flex items-center gap-4">
+            <span className="text-ocre-light">
+              <AgadezCross size={88} strokeWidth={2.2} animateIn={false} />
             </span>
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-4xl font-display font-semibold">Djanet</span>
+              <span className="text-4xl font-display italic text-ocre-light">
+                Étoile
+              </span>
+            </div>
           </div>
           <p className="mt-4 max-w-md text-ivory/65 leading-relaxed">
             Expéditions Touaregs au cœur du Sahara algérien. Le désert, comme

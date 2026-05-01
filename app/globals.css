@@ -4,10 +4,37 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   THEME TOKENS — light is default, .dark overrides
+   ============================================ */
 :root {
-  --sand-50: #FBF7F0;
+  --bg: #FBF7F0;
+  --bg-elev: #FFFFFF;
+  --bg-soft: #F5ECDC;
+  --fg: #1A1410;
+  --fg-soft: rgba(26, 20, 16, 0.72);
+  --fg-muted: rgba(26, 20, 16, 0.55);
+  --border: rgba(26, 20, 16, 0.10);
+  --border-soft: rgba(26, 20, 16, 0.06);
   --ocre: #C77B3C;
-  --night: #1A1410;
+  --ocre-light: #E29A5A;
+  --glass: rgba(255, 255, 255, 0.65);
+  --shadow: rgba(26, 20, 16, 0.08);
+}
+
+.dark {
+  --bg: #07050a;          /* nuit profonde, légèrement bleutée */
+  --bg-elev: #110d16;
+  --bg-soft: #15101c;
+  --fg: #F5EBD9;
+  --fg-soft: rgba(245, 235, 217, 0.78);
+  --fg-muted: rgba(245, 235, 217, 0.55);
+  --border: rgba(245, 235, 217, 0.10);
+  --border-soft: rgba(245, 235, 217, 0.05);
+  --ocre: #E29A5A;        /* doré un peu plus chaud en nuit */
+  --ocre-light: #F4B57A;
+  --glass: rgba(20, 14, 28, 0.55);
+  --shadow: rgba(0, 0, 0, 0.55);
 }
 
 html, body {
@@ -20,21 +47,13 @@ html {
 }
 
 body {
-  @apply bg-sand-50 text-night antialiased;
+  background: var(--bg);
+  color: var(--fg);
   font-family: "Inter", system-ui, sans-serif;
-}
-
-/* Avoid horizontal scroll on mobile from long words / titles */
-h1, h2, h3, p {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-}
-
-/* Tighter section padding on mobile */
-@media (max-width: 640px) {
-  .section {
-    @apply px-5 py-16;
-  }
+  -webkit-font-smoothing: antialiased;
+  /* Transition longue de type crépuscule/aube — synchro avec ThemeProvider (1.8s) */
+  transition: background-color 1.8s cubic-bezier(0.4, 0, 0.2, 1),
+              color 1.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 h1, h2, h3, h4, .display {
@@ -42,13 +61,21 @@ h1, h2, h3, h4, .display {
   letter-spacing: -0.01em;
 }
 
+h1, h2, h3, p {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
 ::selection {
-  background: #C77B3C;
+  background: var(--ocre);
   color: #FBF7F0;
 }
 
+/* ============================================
+   COMPONENT CLASSES
+   ============================================ */
 .glass {
-  background: rgba(255, 255, 255, 0.65);
+  background: var(--glass);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
@@ -64,19 +91,43 @@ h1, h2, h3, h4, .display {
 }
 
 .btn-primary {
-  @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-night text-ivory font-medium tracking-wide transition-all duration-300 hover:bg-ocre hover:scale-[1.02] active:scale-[0.99] shadow-lg shadow-night/20;
+  @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-medium tracking-wide transition-all duration-300 hover:scale-[1.02] active:scale-[0.99] shadow-lg;
+  background: var(--fg);
+  color: var(--bg);
+  box-shadow: 0 10px 30px var(--shadow);
+}
+.btn-primary:hover {
+  background: var(--ocre);
+  color: #FBF7F0;
 }
 
 .btn-secondary {
-  @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-night/20 text-night font-medium tracking-wide transition-all duration-300 hover:bg-night hover:text-ivory;
+  @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-medium tracking-wide transition-all duration-300;
+  border: 1px solid var(--border);
+  color: var(--fg);
+}
+.btn-secondary:hover {
+  background: var(--fg);
+  color: var(--bg);
 }
 
 .btn-ghost {
-  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-night/80 font-medium tracking-wide transition-all duration-300 hover:bg-night/5;
+  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-medium tracking-wide transition-all duration-300;
+  color: var(--fg-soft);
+}
+.btn-ghost:hover {
+  background: var(--border-soft);
+  color: var(--fg);
 }
 
 .section {
   @apply px-6 md:px-10 lg:px-16 py-20 md:py-28;
+}
+
+@media (max-width: 640px) {
+  .section {
+    @apply px-5 py-16;
+  }
 }
 
 .container-x {
@@ -84,7 +135,8 @@ h1, h2, h3, h4, .display {
 }
 
 .eyebrow {
-  @apply uppercase text-xs tracking-[0.25em] text-ocre font-medium;
+  @apply uppercase text-xs tracking-[0.25em] font-medium;
+  color: var(--ocre);
 }
 
 .fade-mask-bottom {
@@ -93,9 +145,140 @@ h1, h2, h3, h4, .display {
 }
 
 .input {
-  @apply w-full px-5 py-3.5 rounded-2xl bg-white/70 border border-sand-300/60 text-night placeholder:text-sand-700/40 focus:outline-none focus:ring-2 focus:ring-ocre/40 focus:border-ocre transition;
+  @apply w-full px-5 py-3.5 rounded-2xl border focus:outline-none focus:ring-2 transition;
+  background: color-mix(in srgb, var(--bg-elev) 70%, transparent);
+  border-color: var(--border);
+  color: var(--fg);
+}
+.input::placeholder { color: var(--fg-muted); }
+.input:focus {
+  border-color: var(--ocre);
+  --tw-ring-color: color-mix(in srgb, var(--ocre) 40%, transparent);
 }
 
 .label {
-  @apply block text-sm font-medium text-night/80 mb-1.5;
+  @apply block text-sm font-medium mb-1.5;
+  color: var(--fg-soft);
+}
+
+/* Utility: themed surface card */
+.card-surface {
+  background: color-mix(in srgb, var(--bg-elev) 85%, transparent);
+  border: 1px solid var(--border);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+/* ============================================
+   STARRY SKY (dark mode only background)
+   ============================================ */
+.starry {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  background:
+    radial-gradient(ellipse at 70% 10%, rgba(199,123,60,0.08), transparent 55%),
+    radial-gradient(ellipse at 20% 80%, rgba(199,123,60,0.05), transparent 55%),
+    linear-gradient(180deg, #050308 0%, #0b0814 100%);
+}
+.dark .starry { opacity: 1; }
+
+.starry-layer-deprecated {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-repeat: repeat;
+  will-change: transform, opacity;
+}
+/* === ÉTOILES — DOM réel, chaque étoile a son propre halo box-shadow === */
+.star {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  will-change: opacity, transform;
+  animation-name: star-twinkle;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.star-small {
+  width: 1.6px;
+  height: 1.6px;
+  background: #ffffff;
+  box-shadow:
+    0 0 4px rgba(255,255,255,0.95),
+    0 0 8px rgba(255,231,194,0.45);
+}
+
+.star-medium {
+  width: 2.4px;
+  height: 2.4px;
+  background: #fffaf0;
+  box-shadow:
+    0 0 6px rgba(255,250,240,0.95),
+    0 0 12px rgba(255,231,194,0.5);
+}
+
+.star-large {
+  width: 3.2px;
+  height: 3.2px;
+  background: #fff5dc;
+  box-shadow:
+    0 0 8px rgba(255,245,220,1),
+    0 0 16px rgba(255,217,160,0.7),
+    0 0 26px rgba(255,217,160,0.3);
+}
+
+/* Étoiles "joyaux" : ocre éclatant, halo doré profond */
+.star-jewel {
+  width: 4px;
+  height: 4px;
+  background: #ffd9a0;
+  box-shadow:
+    0 0 10px rgba(255,217,160,1),
+    0 0 22px rgba(226,154,90,0.85),
+    0 0 40px rgba(199,123,60,0.4);
+  animation-name: star-pulse;
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.9); }
+  50%      { opacity: 1;    transform: scale(1.5); }
+}
+@keyframes star-pulse {
+  0%, 100% { opacity: 0.45; transform: scale(0.95); }
+  50%      { opacity: 1;    transform: scale(1.25); }
+}
+
+/* ============================================
+   DARK-MODE COMPAT — bascule les classes utilitaires
+   hardcodées (text-night/x, bg-sand-x) vers la palette nuit.
+   Évite de réécrire chaque page.
+   ============================================ */
+.dark .text-night         { color: var(--fg); }
+.dark .text-night\/55     { color: rgb(245 235 217 / 0.55); }
+.dark .text-night\/60     { color: rgb(245 235 217 / 0.60); }
+.dark .text-night\/65     { color: rgb(245 235 217 / 0.65); }
+.dark .text-night\/70     { color: rgb(245 235 217 / 0.70); }
+.dark .text-night\/75     { color: rgb(245 235 217 / 0.75); }
+.dark .text-night\/80     { color: rgb(245 235 217 / 0.80); }
+
+.dark .bg-sand-50         { background-color: var(--bg); }
+.dark .bg-sand-100        { background-color: rgba(255,255,255,0.04); }
+.dark .bg-sand-200        { background-color: rgba(255,255,255,0.08); }
+
+.dark .border-sand-200    { border-color: var(--border); }
+.dark .border-sand-300    { border-color: var(--border); }
+.dark .border-night\/20   { border-color: rgba(245,235,217,0.20); }
+
+/* Inputs custom (pickers number +/- et autres) */
+.dark .bg-white\/70       { background-color: rgba(255,255,255,0.05); }
+
+/* Reduced motion: kill drift, keep gentle twinkle */
+@media (prefers-reduced-motion: reduce) {
+  .star { animation: none !important; opacity: 0.7 !important; transform: none !important; }
+  body { transition: none !important; }
 }

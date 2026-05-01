@@ -74,7 +74,7 @@ export default function HumanitairePage() {
         </div>
       </section>
 
-      <section className="section bg-sand-100/60">
+      <section className="section bg-sand-100/60 dark:bg-white/[0.02]">
         <div className="container-x">
           <Reveal>
             <p className="eyebrow mb-4">Nos engagements</p>
@@ -86,7 +86,7 @@ export default function HumanitairePage() {
           <div className="mt-14 grid md:grid-cols-2 gap-6">
             {PROJECTS.map((p, i) => (
               <Reveal key={p.title} delay={i * 0.08}>
-                <div className="p-8 rounded-3xl bg-white border border-sand-200 hover:border-ocre/40 transition">
+                <div className="p-8 rounded-3xl card-surface hover:border-ocre/40 transition">
                   <div className="flex items-start gap-5">
                     <div className="w-12 h-12 rounded-2xl bg-ocre/10 text-ocre flex items-center justify-center shrink-0">
                       <p.icon size={22} />
@@ -147,7 +147,7 @@ export default function HumanitairePage() {
           </Reveal>
 
           <Reveal delay={0.15}>
-            <div className="rounded-3xl bg-white border border-sand-200 p-8 md:p-10 shadow-xl shadow-night/5">
+            <div className="rounded-3xl card-surface p-8 md:p-10 shadow-xl shadow-night/5">
               <DonationForm />
             </div>
           </Reveal>

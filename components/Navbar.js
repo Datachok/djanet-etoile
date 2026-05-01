@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import AgadezCross from "@/components/AgadezCross";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const links = [
   { href: "/", label: "Accueil" },
@@ -27,16 +29,24 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass border-b border-sand-200/60" : "bg-transparent"
+        scrolled
+          ? "glass border-b"
+          : "bg-transparent border-b border-transparent"
       }`}
+      style={scrolled ? { borderColor: "var(--border-soft)" } : undefined}
     >
-      <nav className="container-x flex items-center justify-between px-6 md:px-10 lg:px-16 h-20">
-        <Link href="/" className="flex items-center gap-2 group">
-          <span className="text-2xl font-display font-semibold tracking-tight text-night">
-            Djanet
+      <nav className="container-x flex items-center justify-between px-6 md:px-10 lg:px-16 h-24">
+        <Link href="/" className="flex items-center gap-3 group">
+          <span className="text-ocre">
+            <AgadezCross size={64} strokeWidth={2.6} />
           </span>
-          <span className="text-2xl font-display font-light text-ocre italic">
-            Étoile
+          <span className="flex items-baseline gap-1.5">
+            <span className="text-2xl md:text-3xl font-display font-semibold tracking-tight" style={{ color: "var(--fg)" }}>
+              Djanet
+            </span>
+            <span className="text-2xl md:text-3xl font-display font-light italic" style={{ color: "var(--ocre)" }}>
+              Étoile
+            </span>
           </span>
         </Link>
 
@@ -45,7 +55,8 @@ export default function Navbar() {
             <li key={l.href}>
               <Link
                 href={l.href}
-                className="px-4 py-2 rounded-full text-sm tracking-wide text-night/75 hover:text-night hover:bg-night/5 transition"
+                className="px-4 py-2 rounded-full text-sm tracking-wide transition"
+                style={{ color: "var(--fg-soft)" }}
               >
                 {l.label}
               </Link>
@@ -53,19 +64,24 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-2">
+          <ThemeToggle />
           <Link href="/reservation" className="btn-primary text-sm">
             Réserver
           </Link>
         </div>
 
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="md:hidden p-2 rounded-full hover:bg-night/5"
-          aria-label="Menu"
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="md:hidden flex items-center gap-1">
+          <ThemeToggle />
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="p-2 rounded-full transition hover:bg-black/5 dark:hover:bg-white/10"
+            aria-label="Menu"
+            style={{ color: "var(--fg)" }}
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -74,7 +90,8 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass border-t border-sand-200/60 overflow-hidden"
+            className="md:hidden glass border-t overflow-hidden"
+            style={{ borderColor: "var(--border-soft)" }}
           >
             <ul className="px-6 py-6 flex flex-col gap-2">
               {links.map((l) => (
@@ -82,7 +99,8 @@ export default function Navbar() {
                   <Link
                     href={l.href}
                     onClick={() => setOpen(false)}
-                    className="block px-4 py-3 rounded-xl text-night/80 hover:bg-night/5"
+                    className="block px-4 py-3 rounded-xl transition hover:bg-black/5 dark:hover:bg-white/10"
+                    style={{ color: "var(--fg-soft)" }}
                   >
                     {l.label}
                   </Link>

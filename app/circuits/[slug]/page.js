@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Reveal from "@/components/Reveal";
-import { CIRCUITS, CIRCUITS_LIST } from "@/lib/circuits";
+import { CIRCUITS, CIRCUITS_LIST, PACKING_LIST, SEASON } from "@/lib/circuits";
 import {
   ArrowRight,
   Check,
@@ -60,6 +60,7 @@ export default function CircuitDetail({ params }) {
             <span className="inline-flex items-center gap-2"><Users size={16} /> {circuit.group}</span>
             <span className="inline-flex items-center gap-2"><Activity size={16} /> {circuit.difficulty}</span>
             <span className="inline-flex items-center gap-2"><MapPin size={16} /> Tassili n'Ajjer</span>
+            <span className="inline-flex items-center gap-2 text-ocre-light">Saison · {SEASON}</span>
           </div>
         </div>
       </section>
@@ -97,7 +98,7 @@ export default function CircuitDetail({ params }) {
           </div>
 
           <Reveal delay={0.15}>
-            <aside className="sticky top-28 rounded-3xl bg-white border border-sand-200 p-8 shadow-xl shadow-night/5">
+            <aside className="sticky top-28 rounded-3xl card-surface p-8 shadow-xl shadow-night/5">
               <p className="text-xs uppercase tracking-[0.25em] text-ocre">
                 Expédition
               </p>
@@ -140,7 +141,7 @@ export default function CircuitDetail({ params }) {
       </section>
 
       {/* Itinerary */}
-      <section className="section bg-sand-100/60">
+      <section className="section bg-sand-100/60 dark:bg-white/[0.02]">
         <div className="container-x">
           <Reveal>
             <p className="eyebrow mb-4">Itinéraire</p>
@@ -171,7 +172,7 @@ export default function CircuitDetail({ params }) {
       <section className="section">
         <div className="container-x grid md:grid-cols-2 gap-10">
           <Reveal>
-            <div className="rounded-3xl bg-white border border-sand-200 p-10">
+            <div className="rounded-3xl card-surface p-10">
               <h3 className="font-display text-2xl md:text-3xl">Inclus</h3>
               <ul className="mt-6 space-y-3">
                 {circuit.included.map((item) => (
@@ -223,6 +224,58 @@ export default function CircuitDetail({ params }) {
                 </div>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Préparer son voyage — packing list + accessibilité */}
+      <section className="section bg-sand-100/60 dark:bg-white/[0.02]">
+        <div className="container-x">
+          <div className="grid lg:grid-cols-[1fr_1.4fr] gap-14 items-start">
+            <Reveal>
+              <p className="eyebrow mb-4">Préparer son voyage</p>
+              <h2 className="font-display text-3xl md:text-5xl text-balance leading-tight">
+                Confort, mobilité et adaptabilité.
+              </h2>
+              <div className="mt-8 space-y-5 text-night/75 leading-relaxed">
+                <p>
+                  <strong>Mobilité.</strong> Le circuit se fait en véhicules
+                  4x4 durant tout le séjour, pour un transport fluide à
+                  travers les paysages désertiques.
+                </p>
+                <p>
+                  <strong>Adaptabilité.</strong> Programme convenable pour
+                  toute catégorie d'âge entre 5 et 70 ans, avec un minimum
+                  de bonne condition physique pour les marches.
+                </p>
+                <p>
+                  <strong>Saison.</strong>{" "}
+                  <span className="text-ocre">{SEASON}</span> — la fenêtre
+                  optimale pour profiter du désert dans les meilleures
+                  conditions climatiques.
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.15}>
+              <h3 className="font-display text-2xl md:text-3xl mb-6">
+                Équipez-vous pour l'aventure
+              </h3>
+              <div className="grid sm:grid-cols-2 gap-3">
+                {PACKING_LIST.map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-2xl card-surface p-5 hover:border-ocre/40 transition"
+                  >
+                    <div className="text-2xl mb-2">{item.icon}</div>
+                    <p className="font-medium">{item.title}</p>
+                    <p className="text-sm text-night/65 mt-1 leading-relaxed">
+                      {item.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>

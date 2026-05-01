@@ -81,7 +81,7 @@ export default function HomePage() {
       </section>
 
       {/* Values */}
-      <section className="section bg-sand-100/50">
+      <section className="section bg-sand-100/50 dark:bg-white/[0.02]">
         <div className="container-x">
           <Reveal>
             <p className="eyebrow mb-4">Notre signature</p>
@@ -94,7 +94,7 @@ export default function HomePage() {
           <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {VALUES.map((v, i) => (
               <Reveal key={v.title} delay={i * 0.1}>
-                <div className="h-full p-8 rounded-3xl bg-white/70 border border-sand-200 hover:border-ocre/40 hover:-translate-y-1 transition-all duration-500">
+                <div className="h-full p-8 rounded-3xl card-surface hover:border-ocre/40 hover:-translate-y-1 transition-all duration-500">
                   <div className="w-12 h-12 rounded-2xl bg-ocre/10 text-ocre flex items-center justify-center">
                     <v.icon size={22} />
                   </div>

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import CircuitCard from "@/components/CircuitCard";
 import Reveal from "@/components/Reveal";
-import { CIRCUITS_LIST } from "@/lib/circuits";
-import { ArrowRight } from "lucide-react";
+import { CIRCUITS_LIST, SEASON } from "@/lib/circuits";
+import { ArrowRight, Download, FileText } from "lucide-react";
 
 export const metadata = {
   title: "Circuits — Djanet Étoile",
@@ -28,6 +28,41 @@ export default function CircuitsPage() {
         </div>
       </section>
 
+      {/* Bloc téléchargement du programme PDF — bien visible avant les cartes */}
+      <section className="pb-12 section pt-0">
+        <div className="container-x">
+          <Reveal>
+            <a
+              href="/programme-djanet-etoile.pdf"
+              download
+              className="group block rounded-3xl p-6 md:p-8 bg-night-gradient text-ivory relative overflow-hidden hover:shadow-2xl hover:shadow-ocre/20 transition-shadow"
+            >
+              <div className="absolute -top-20 -right-20 w-64 h-64 bg-ocre/30 rounded-full blur-3xl" />
+              <div className="relative flex flex-col md:flex-row md:items-center gap-6 md:gap-8">
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-ocre/15 text-ocre-light flex items-center justify-center shrink-0 ring-1 ring-ocre/30">
+                  <FileText size={36} />
+                </div>
+                <div className="flex-1">
+                  <p className="text-xs uppercase tracking-[0.25em] text-ocre-light mb-2">
+                    Programme officiel · {SEASON}
+                  </p>
+                  <h3 className="font-display text-2xl md:text-3xl leading-tight">
+                    Téléchargez le programme complet des expéditions
+                  </h3>
+                  <p className="mt-2 text-ivory/70 text-sm md:text-base max-w-2xl">
+                    Itinéraires détaillés des deux circuits, équipement à
+                    prévoir, accueil à Djanet, contacts. PDF — 27 Mo.
+                  </p>
+                </div>
+                <span className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-ocre text-ivory font-medium tracking-wide group-hover:bg-ocre-light group-hover:scale-[1.03] transition-all shrink-0">
+                  <Download size={18} /> Télécharger
+                </span>
+              </div>
+            </a>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="pb-24 section pt-0">
         <div className="container-x grid md:grid-cols-2 gap-8">
           {CIRCUITS_LIST.map((c, i) => (
@@ -36,7 +71,7 @@ export default function CircuitsPage() {
         </div>
       </section>
 
-      <section className="section bg-sand-100/60">
+      <section className="section bg-sand-100/60 dark:bg-white/[0.02]">
         <div className="container-x">
           <div className="grid md:grid-cols-3 gap-10 max-w-4xl mx-auto text-center">
             <Reveal>

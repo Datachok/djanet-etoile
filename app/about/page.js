@@ -71,7 +71,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section bg-sand-100/60">
+      <section className="section bg-sand-100/60 dark:bg-white/[0.02]">
         <div className="container-x">
           <Reveal>
             <p className="eyebrow mb-4">L'équipe</p>
@@ -83,7 +83,7 @@ export default function AboutPage() {
           <div className="mt-14 grid md:grid-cols-3 gap-6">
             {TEAM.map((m, i) => (
               <Reveal key={m.name} delay={i * 0.1}>
-                <div className="h-full p-8 rounded-3xl bg-white border border-sand-200 hover:border-ocre/40 transition">
+                <div className="h-full p-8 rounded-3xl card-surface hover:border-ocre/40 transition">
                   <div className="w-16 h-16 rounded-full bg-ocre/15 text-ocre flex items-center justify-center font-display text-2xl">
                     {m.name[0]}
                   </div>
