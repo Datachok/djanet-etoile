@@ -36,6 +36,38 @@ export default function ThemeProvider({ children }) {
     setTheme(isDark ? "dark" : "light");
   }, []);
 
+  // Suivi LIVE de la préférence système (jour/nuit OS) — uniquement
+  // tant que l'utilisateur n'a pas explicitement choisi via le toggle.
+  // Dès qu'il clique, sa préférence est stockée et prend la priorité.
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const apply = (matches) => {
+      // Si l'utilisateur a déjà cliqué, on respecte son choix manuel
+      let stored = null;
+      try {
+        stored = localStorage.getItem(STORAGE_KEY);
+      } catch {}
+      if (stored === "light" || stored === "dark") return;
+
+      const next = matches ? "dark" : "light";
+      document.documentElement.classList.toggle("dark", next === "dark");
+      setTheme(next);
+    };
+
+    const handler = (e) => apply(e.matches);
+
+    // Couvre les deux APIs (Safari < 14 utilisait addListener)
+    if (mq.addEventListener) mq.addEventListener("change", handler);
+    else if (mq.addListener) mq.addListener(handler);
+
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener("change", handler);
+      else if (mq.removeListener) mq.removeListener(handler);
+    };
+  }, []);
+
   const toggle = useCallback(() => {
     if (lockRef.current || theme === null) return;
     lockRef.current = true;
